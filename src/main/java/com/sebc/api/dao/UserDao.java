@@ -10,12 +10,35 @@ import org.springframework.stereotype.Repository;
  * @Desc 用户表数据访问层
  */
 
-public interface UserDao{
+public interface UserDao {
 
     /**
      * @param userName 用户名称
      * @return 用户信息
      */
-//    @Query(fields = "username")
     public User findUserByUsername(String userName);
+
+    /**
+     * 插入用户
+     *
+     * @param user
+     */
+    public void insertUser(User user);
+
+
+    /**
+     * 删除用户
+     *
+     * @param user
+     * @return
+     */
+    long deleteUser(User user);
+
+    /**
+     * 更新用户
+     *
+     * @param user
+     * @return
+     */
+    long updateUser(User user);
 }

@@ -18,10 +18,11 @@ import java.util.Collection;
 @Component
 public class MyAuthenticationProvider implements AuthenticationProvider {
 
+    private final MyUserDetailService myUserDetailService;
 
-    @Autowired
-    private MyUserDetailService myUserDetailService;
-
+    public MyAuthenticationProvider(MyUserDetailService myUserDetailService) {
+        this.myUserDetailService = myUserDetailService;
+    }
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
