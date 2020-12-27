@@ -11,11 +11,8 @@ public class UserUtils {
      * 获取当前用户信息
      *
      * @return 信息
-     *
-     *
      */
     public static CurrentUser getCurrentUser() {
-        JwtUser jwtUser = (JwtUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        return jwtUser.getCurrentUser();
+        return (CurrentUser) SecurityContextHolder.getContext().getAuthentication().getDetails();
     }
 }
