@@ -17,4 +17,9 @@ public class User {
     private String username;
     private String password;
 
+
+    public User(String idStr) {
+        this.id = new ObjectId(idStr);
+    }
+
 }

@@ -23,7 +23,7 @@ public interface UserDao {
      *
      * @param user
      */
-    public void insertUser(User user);
+    public User insertUser(User user);
 
 
     /**

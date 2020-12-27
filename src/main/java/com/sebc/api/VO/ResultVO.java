@@ -4,6 +4,7 @@ import com.sebc.api.enums.ResultCode;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.io.Serializable;
 
@@ -13,6 +14,7 @@ import java.io.Serializable;
  * @Desc api统一返回对象
  */
 @Data
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 public class ResultVO<T> implements Serializable {
@@ -36,7 +38,20 @@ public class ResultVO<T> implements Serializable {
     }
 
     /**
-     * 获取成功的结果
+     * 获取参数校验的结果
+     *
+     * @return 结果
+     */
+    public static <T> ResultVO<T> noLoginErrorResult() {
+        ResultVO<T> resultVO = new ResultVO<T>();
+        resultVO.setCode(ResultCode.AUTHOR_ERROR.getValue());
+        resultVO.setMsg(ResultCode.AUTHOR_ERROR.getDesc());
+        return resultVO;
+    }
+
+
+    /**
+     * 获取参数校验的结果
      *
      * @return 结果
      */
@@ -48,4 +63,17 @@ public class ResultVO<T> implements Serializable {
     }
 
 
+    /**
+     * 获取内部异常的结果
+     *
+     * @return 结果
+     */
+    public static <T> ResultVO<T> serverErrorResult() {
+        ResultVO<T> resultVO = new ResultVO<T>();
+        resultVO.setCode(ResultCode.SERVER_ERROR.getValue());
+        resultVO.setMsg(ResultCode.SERVER_ERROR
+
+                .getDesc());
+        return resultVO;
+    }
 }

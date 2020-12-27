@@ -24,7 +24,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User findUserByUsername(String userName) {
-        Query query = new Query(Criteria.where("userName").is(userName));
+        Query query = new Query(Criteria.where("username").is(userName));
         List<User> userList = writeMongo.find(query, User.class);
         if (CollectionUtils.isEmpty(userList)) {
             return null;
@@ -33,8 +33,8 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void insertUser(User user) {
-        writeMongo.insert(user);
+    public User insertUser(User user) {
+       return writeMongo.insert(user);
     }
 
     @Override

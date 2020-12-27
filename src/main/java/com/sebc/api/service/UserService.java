@@ -9,5 +9,14 @@ public interface UserService {
      * @param name
      * @return
      */
-    public User findUserByName(String name);
+    User findUserByName(String name);
+
+
+    User createUser(User user);
+
+    /**
+     * 根据Id删除用户
+     * @param id
+     */
+    void deleteUserById(String id);
 }
