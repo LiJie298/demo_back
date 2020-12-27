@@ -1,11 +1,7 @@
 package com.sebc.api.security;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sebc.api.entity.JwtUser;
-import com.sebc.api.entity.User;
 import com.sebc.api.util.LogUtil;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -18,10 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
-import java.util.Map;
 
 /**
  * 用户登录验证
@@ -79,7 +72,7 @@ public class JWTLoginFilter extends UsernamePasswordAuthenticationFilter {
         // 从User中获取权限信息
         Collection<? extends GrantedAuthority> authorities = user.getAuthorities();
         // 创建Token
-        String token = JwtTokenUtil.createToken(user.getUsername(), authorities.toString());
+        String token = JwtTokenUtil.createToken(user.getUsername(), authorities.toString(), user.getCurrentUser());
 
         // 设置编码 防止乱码问题
         response.setCharacterEncoding("UTF-8");

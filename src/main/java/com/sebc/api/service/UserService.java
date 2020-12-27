@@ -12,10 +12,18 @@ public interface UserService {
     User findUserByName(String name);
 
 
+    /**
+
+     *
+     * @param user
+     * @param user
+     * @return
+     */
     User createUser(User user);
 
     /**
      * 根据Id删除用户
+     *
      * @param id
      */
     void deleteUserById(String id);

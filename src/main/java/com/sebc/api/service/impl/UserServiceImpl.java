@@ -1,6 +1,7 @@
 package com.sebc.api.service.impl;
 
 import com.sebc.api.dao.UserDao;
+import com.sebc.api.entity.CurrentUser;
 import com.sebc.api.entity.JwtUser;
 import com.sebc.api.entity.User;
 import com.sebc.api.service.UserService;
@@ -12,10 +13,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -67,6 +66,10 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 //        for (BeanDefinitionDsl.Role role : userMapper.findRoleByUsername(s)) {
 //            authorities.add(new SimpleGrantedAuthority("ROLE_" + role.getName()));
 //        }
-        return new JwtUser(user.getUsername(), user.getPassword(), authorities);
+        JwtUser jwtUser = new JwtUser(user.getUsername(), user.getPassword(), authorities);
+        CurrentUser currentUser = new CurrentUser();
+        currentUser.setUserName(user.getUsername());
+        jwtUser.setCurrentUser(currentUser);
+        return jwtUser;
     }
 }

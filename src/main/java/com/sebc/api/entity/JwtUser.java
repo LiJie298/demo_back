@@ -23,18 +23,31 @@ public class JwtUser implements UserDetails {
     private String username;
     private String password;
 
-    private final boolean accountNonExpired;
 
-    private final boolean accountNonLocked;
+    private boolean accountNonExpired;
 
-    private final boolean credentialsNonExpired;
+    private boolean accountNonLocked;
 
-    private final boolean enabled;
+    private boolean credentialsNonExpired;
 
-    private final Collection<? extends GrantedAuthority> authorities;
+    private boolean enabled;
+
+    private Collection<? extends GrantedAuthority> authorities;
+
+
+    /**
+     * 存储当前用户信息
+     */
+    private CurrentUser currentUser;
 
     public JwtUser(String username, String password, Collection<? extends GrantedAuthority> authorities) {
-        this(username, password, true, true, true, true, authorities);
+        this.username = username;
+        this.password = password;
+        this.authorities = authorities;
+        this.accountNonExpired = true;
+        this.accountNonLocked = true;
+        this.credentialsNonExpired = true;
+        this.enabled = true;
     }
 
     @Override

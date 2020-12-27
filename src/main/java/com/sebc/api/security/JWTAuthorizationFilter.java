@@ -5,6 +5,8 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.WebAuthenticationDetails;
+import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 import javax.servlet.FilterChain;
@@ -40,7 +42,7 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
         }
 
         // 若请求头中有token 则调用下面的方法进行解析 并设置认证信息
-        SecurityContextHolder.getContext().setAuthentication(getAuthentication(tokenHeader));
+        SecurityContextHolder.getContext().setAuthentication(getAuthentication(tokenHeader, request));
         super.doFilterInternal(request, response, chain);
     }
 
@@ -50,7 +52,7 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
      * @param tokenHeader 字符串形式的Token请求头
      * @return 带用户名和密码以及权限的Authentication
      */
-    private UsernamePasswordAuthenticationToken getAuthentication(String tokenHeader) {
+    private UsernamePasswordAuthenticationToken getAuthentication(String tokenHeader, HttpServletRequest httpServletRequest) {
         // 去掉前缀 获取Token字符串
         String token = tokenHeader.replace(JwtTokenUtil.TOKEN_PREFIX, "");
         // 从Token中解密获取用户名
@@ -64,7 +66,10 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
             authorities.add(new SimpleGrantedAuthority(s));
         }
         if (username != null) {
-            return new UsernamePasswordAuthenticationToken(username, null, authorities);
+            UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
+                    new UsernamePasswordAuthenticationToken(username, null, authorities);
+            usernamePasswordAuthenticationToken.setDetails(JwtTokenUtil.getCurrentUser(token));
+            return usernamePasswordAuthenticationToken;
         }
         return null;
     }
