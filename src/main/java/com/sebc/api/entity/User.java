@@ -16,7 +16,11 @@ public class User {
     private ObjectId id;
     private String username;
     private String password;
-
+    private String userMail;
+    private String userPhone;
+    private String userAdmin;
+    private String userPower;
+    private String userStop;
 
     public User(String idStr) {
         this.id = new ObjectId(idStr);

@@ -1,8 +1,8 @@
 package com.sebc.api.service.impl;
 
 import com.sebc.api.dao.UserDao;
-import com.sebc.api.entity.CurrentUser;
-import com.sebc.api.entity.JwtUser;
+import com.sebc.api.VO.CurrentUser;
+import com.sebc.api.VO.JwtUser;
 import com.sebc.api.entity.User;
 import com.sebc.api.service.UserService;
 import org.apache.commons.lang3.StringUtils;

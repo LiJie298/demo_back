@@ -1,12 +1,8 @@
 package com.sebc.api.service.impl;
 
-import com.mongodb.client.gridfs.model.GridFSUploadOptions;
 import com.sebc.api.dbutil.MongoClient;
-import com.sebc.api.entity.CurrentUser;
 import com.sebc.api.service.VideoFileService;
 import com.sebc.api.util.LogUtil;
-import com.sebc.api.util.UserUtils;
-import org.bson.Document;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

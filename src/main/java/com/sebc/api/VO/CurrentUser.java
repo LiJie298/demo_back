@@ -1,4 +1,4 @@
-package com.sebc.api.entity;
+package com.sebc.api.VO;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

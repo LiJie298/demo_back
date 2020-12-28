@@ -1,6 +1,6 @@
 package com.sebc.api.security;
 
-import com.sebc.api.entity.JwtUser;
+import com.sebc.api.VO.JwtUser;
 import com.sebc.api.util.LogUtil;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

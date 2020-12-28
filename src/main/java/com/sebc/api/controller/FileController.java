@@ -1,7 +1,7 @@
 package com.sebc.api.controller;
 
 import com.sebc.api.VO.ResultVO;
-import com.sebc.api.entity.CurrentUser;
+import com.sebc.api.VO.CurrentUser;
 import com.sebc.api.service.VideoFileService;
 import com.sebc.api.util.LogUtil;
 import com.sebc.api.util.UserUtils;

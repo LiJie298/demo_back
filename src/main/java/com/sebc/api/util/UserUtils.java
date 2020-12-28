@@ -1,7 +1,6 @@
 package com.sebc.api.util;
 
-import com.sebc.api.entity.CurrentUser;
-import com.sebc.api.entity.JwtUser;
+import com.sebc.api.VO.CurrentUser;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 public class UserUtils {
