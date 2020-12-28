@@ -1,10 +1,12 @@
 package com.sebc.api.service.impl;
 
+import com.mongodb.client.gridfs.model.GridFSUploadOptions;
 import com.sebc.api.dbutil.MongoClient;
 import com.sebc.api.entity.CurrentUser;
 import com.sebc.api.service.VideoFileService;
 import com.sebc.api.util.LogUtil;
 import com.sebc.api.util.UserUtils;
+import org.bson.Document;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,11 +20,9 @@ public class VideoFileServiceImpl implements VideoFileService {
     private MongoClient mongoClient;
 
     @Override
-    public ObjectId saveFile(String fileName, InputStream inputStream) {
+    public ObjectId saveFile(String fileName, String contentType, InputStream inputStream) {
         ObjectId id = null;
         try {
-            CurrentUser currentUser = UserUtils.getCurrentUser();
-            System.out.println(currentUser.getUserName());
             id = mongoClient.defaultGFSBucket().uploadFromStream(fileName, inputStream);
         } finally {
             try {
